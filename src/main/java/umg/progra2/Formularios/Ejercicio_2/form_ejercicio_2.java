@@ -3,14 +3,13 @@ package umg.progra2.Formularios.Ejercicio_2;
 import umg.progra2.DataBase.Model.UsuarioModel;
 import umg.progra2.DataBase.Service.DatosService;
 import umg.progra2.DataBase.Service.UsuarioService;
-import umg.progra2.Formularios.Ejercicio_1.From_Pre_parcial_2;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class form_ejercicio_2 {
+public class form_ejercicio_2 extends JFrame {
     private JPanel form_ejercicio_2;
     private JLabel lb_idusuario;
     private JTextField textField1_idusuario;
@@ -30,18 +29,13 @@ public class form_ejercicio_2 {
     private JButton button1_buscar;
     private JButton button1_actualizar;
     private JButton button1_eliminar;
+    private JComboBox comboBox1_seccion;
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("form_ejercicio_2");
-        frame.setContentPane(new form_ejercicio_2().form_ejercicio_2);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
 
 
 
     //AREA DE METODOS ================================================================================================================
+    //Metodo para limpiar las cacillas ====
     private void mmLimpiar(){
         textField1_idusuario.setText("");
         textField1_carne.setText("");
@@ -52,7 +46,89 @@ public class form_ejercicio_2 {
         textField1_activo.setText("");
     }
 
+    //Metodo para rellenar el combobox =====
+    public void llenarcombo (){
+        comboBox1_seccion.addItem("");
+        comboBox1_seccion.addItem("A");
+        comboBox1_seccion.addItem("B");
+    }
+
+
     public form_ejercicio_2() {
+
+        // Inicialización de componentes
+        form_ejercicio_2 = new JPanel();
+        lb_idusuario = new JLabel("ID Usuario:");
+        textField1_idusuario = new JTextField(20);
+
+        lb_carbe = new JLabel("Carne:");
+        textField1_carne = new JTextField(20);
+
+        lb_nombre = new JLabel("Nombre:");
+        textField1_nombre = new JTextField(20);
+
+        lb_correo = new JLabel("Correo:");
+        textField1_correo = new JTextField(20);
+
+        lb_seccion = new JLabel("Sección:");
+        comboBox1_seccion = new JComboBox<>();
+        textField1_seccion = new JTextField(20);
+
+        lb_telegramid = new JLabel("Telegram ID:");
+        textField1_telegramid = new JTextField(20);
+
+        lb_activo = new JLabel("Activo:");
+        textField1_activo = new JTextField(20);
+
+        button1_Crear = new JButton("Crear");
+        button1_buscar = new JButton("Buscar");
+        button1_actualizar = new JButton("Actualizar");
+        button1_eliminar = new JButton("Eliminar");
+
+        // Configuración del layout del panel
+        form_ejercicio_2.setLayout(new GridLayout(8, 2, 5, 5));
+        form_ejercicio_2.add(lb_idusuario);
+        form_ejercicio_2.add(textField1_idusuario);
+        form_ejercicio_2.add(lb_carbe);
+        form_ejercicio_2.add(textField1_carne);
+        form_ejercicio_2.add(lb_nombre);
+        form_ejercicio_2.add(textField1_nombre);
+        form_ejercicio_2.add(lb_correo);
+        form_ejercicio_2.add(textField1_correo);
+        form_ejercicio_2.add(lb_seccion);
+        form_ejercicio_2.add(comboBox1_seccion);
+        form_ejercicio_2.add(lb_telegramid);
+        form_ejercicio_2.add(textField1_telegramid);
+        form_ejercicio_2.add(lb_activo);
+        form_ejercicio_2.add(textField1_activo);
+
+        // Configuración del panel de botones
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout());
+        buttonPanel.add(button1_Crear);
+        buttonPanel.add(button1_buscar);
+        buttonPanel.add(button1_actualizar);
+        buttonPanel.add(button1_eliminar);
+
+        // Configuración del JFrame
+        setTitle("Formulario Ejercicio 2");
+        setSize(400, 300);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+        add(form_ejercicio_2, BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
+        setVisible(true);
+
+        llenarcombo();
+
+        comboBox1_seccion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String eecombo = comboBox1_seccion.getSelectedItem().toString();
+                textField1_seccion.setText(eecombo);
+            }
+        });
 
         //AREA DE BOTONES =============================================================
 
@@ -61,7 +137,7 @@ public class form_ejercicio_2 {
             @Override
             public void actionPerformed(ActionEvent e) {
                 UsuarioModel usuario = new UsuarioModel();
-                if(textField1_nombre.getText().isEmpty() || textField1_carne.getText().isEmpty() || textField1_telegramid.getText().isEmpty() || textField1_activo.getText().isEmpty() || textField1_seccion.getText().isEmpty()){
+                if(textField1_nombre.getText().isEmpty() || textField1_carne.getText().isEmpty() || textField1_telegramid.getText().isEmpty() || textField1_activo.getText().isEmpty() || textField1_seccion.getText().isEmpty() || textField1_correo.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null, "Además de ID Usuario, ninguno de los campos puede estar vacio");
                     return;
                 }
@@ -216,4 +292,6 @@ public class form_ejercicio_2 {
 
 
     }
+
+
 }

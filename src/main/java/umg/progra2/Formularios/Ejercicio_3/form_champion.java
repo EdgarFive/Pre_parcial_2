@@ -4,10 +4,11 @@ import umg.progra2.DataBase.Model.ChampionModel;
 import umg.progra2.DataBase.Service.ChampionService;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class form_champion {
+public class form_champion extends JFrame {
     private JPanel form_base_champion;
     private JLabel lb_id_equipo;
     private JLabel lb_nombre;
@@ -41,13 +42,7 @@ public class form_champion {
     private JButton button1_eliminar;
 
     //Main
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("form_champion");
-        frame.setContentPane(new form_champion().form_base_champion);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
+
 
     //AREA DE METODOS ================================================================================================================
     private void mmLimpiar() {
@@ -72,8 +67,102 @@ public class form_champion {
         }
     }
 
+/*
+    public static void ejec() {
+        JFrame frame = new JFrame("form_champion");
+        frame.setContentPane(new form_champion().form_base_champion);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+ */
 
     public form_champion() {
+
+        // Inicializa los componentes
+        form_base_champion = new JPanel();
+        lb_id_equipo = new JLabel("ID Equipo:");
+        lb_nombre = new JLabel("Nombre:");
+        lb_pais = new JLabel("País:");
+        lb_ciudad = new JLabel("Ciudad:");
+        lb_estadio = new JLabel("Estadio:");
+        lb_fundacion = new JLabel("Año de Fundación:");
+        lb_entrenador = new JLabel("Entrenador:");
+        lb_web_oficial = new JLabel("Web Oficial:");
+        lb_facebook = new JLabel("Facebook:");
+        lb_twitter = new JLabel("Twitter:");
+        lb_instagram = new JLabel("Instagram:");
+        lb_patrocinador_principal = new JLabel("Patrocinador Principal:");
+        lb_creado_en = new JLabel("Creado En:");
+
+        textField1_id_equipo = new JTextField(20);
+        textField1_nombre = new JTextField(20);
+        textField1_pais = new JTextField(20);
+        textField1_ciudad = new JTextField(20);
+        textField1_estadio = new JTextField(20);
+        textField1_fundacion = new JTextField(20);
+        textField1_entrenador = new JTextField(20);
+        textField1_web = new JTextField(20);
+        textField1_facebook = new JTextField(20);
+        textField1_twitter = new JTextField(20);
+        textField1_instagram = new JTextField(20);
+        textField1_patrocinador = new JTextField(20);
+        textField1_creado_en = new JTextField(20);
+
+        button1_crear = new JButton("Crear");
+        button1_buscar = new JButton("Buscar");
+        button1_actualizar = new JButton("Actualizar");
+        button1_eliminar = new JButton("Eliminar");
+
+        // Configura el diseño del panel
+        form_base_champion.setLayout(new GridLayout(14, 2, 5, 5));
+        form_base_champion.add(lb_id_equipo);
+        form_base_champion.add(textField1_id_equipo);
+        form_base_champion.add(lb_nombre);
+        form_base_champion.add(textField1_nombre);
+        form_base_champion.add(lb_pais);
+        form_base_champion.add(textField1_pais);
+        form_base_champion.add(lb_ciudad);
+        form_base_champion.add(textField1_ciudad);
+        form_base_champion.add(lb_estadio);
+        form_base_champion.add(textField1_estadio);
+        form_base_champion.add(lb_fundacion);
+        form_base_champion.add(textField1_fundacion);
+        form_base_champion.add(lb_entrenador);
+        form_base_champion.add(textField1_entrenador);
+        form_base_champion.add(lb_web_oficial);
+        form_base_champion.add(textField1_web);
+        form_base_champion.add(lb_facebook);
+        form_base_champion.add(textField1_facebook);
+        form_base_champion.add(lb_twitter);
+        form_base_champion.add(textField1_twitter);
+        form_base_champion.add(lb_instagram);
+        form_base_champion.add(textField1_instagram);
+        form_base_champion.add(lb_patrocinador_principal);
+        form_base_champion.add(textField1_patrocinador);
+        form_base_champion.add(lb_creado_en);
+        form_base_champion.add(textField1_creado_en);
+
+        // Botones
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout());
+        buttonPanel.add(button1_crear);
+        buttonPanel.add(button1_buscar);
+        buttonPanel.add(button1_actualizar);
+        buttonPanel.add(button1_eliminar);
+
+        // Configura el contenedor principal
+        setLayout(new BorderLayout());
+        add(form_base_champion, BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
+
+        // Configura la ventana
+        setTitle("Formulario Champion");
+        setSize(500, 600); // Tamaño de la ventana
+        setLocationRelativeTo(null); // Centrar ventana
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cierra la ventana pero no la aplicación
+        setVisible(true);
 
         //Boton CREAR ================================================================================================================
         button1_crear.addActionListener(new ActionListener() {
